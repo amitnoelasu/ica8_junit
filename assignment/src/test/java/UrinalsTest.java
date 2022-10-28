@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,9 +15,10 @@ class UrinalsTest {
         assertTrue(urinals.goodString(tests[0]));
         assertTrue(urinals.goodString(tests[1]));
         assertTrue(urinals.goodString(tests[2]));
-//        assertTrue(urinals.goodString(tests[3]));
+        assertFalse(urinals.goodString(tests[3]));
 
     }
+
 
 
     @Test
@@ -33,9 +35,8 @@ class UrinalsTest {
     }
 
     @Test
-    void openFile() {
-        assertNotNull(urinals.openFile());
+    void writeToFile() {
+        File f = new File("test.txt");
+        assertTrue(urinals.writeToFile("test rule.txt", f));
     }
-
-    
 }
