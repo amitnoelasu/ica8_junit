@@ -1,4 +1,5 @@
 import java.io.*;
+import java.nio.file.FileAlreadyExistsException;
 import java.util.Scanner;
 
 /*
@@ -7,7 +8,7 @@ AUTHOR: Amit Noel Thokala
  */
 public class Urinals {
     public static int RULE_NO = 0;
-
+    public static final String DAT_FILE_NAME = "urinal.dat";
     String getStringFromKeyboard() {
         Scanner s = new Scanner(System.in);
         String input = s.nextLine().trim();
@@ -70,38 +71,42 @@ public class Urinals {
         return true;
     }
 
-    boolean writeToFile(String output, File f) {
+    boolean writeToFile(String output, File f) throws Exception {
         try {
+            if(f.exists()) {
+                throw new FileAlreadyExistsException("File already exists");
+            }
+            if(!f.getName().matches(".*.txt")) {
+                throw new Exception("Bad file Name");
+            }
             FileWriter myWriter = new FileWriter(f);
             BufferedWriter buffer = new BufferedWriter(myWriter);
             buffer.write(output);
             buffer.close();
             RULE_NO++;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
+        } catch (IOException e) {
+            throw e;
         }
         return true;
     }
 
 
 
-    FileReader openFile() {
+    FileReader openFile(String filename) throws FileNotFoundException {
         try {
 //            String currentDirectory = System.getProperty("user.dir");
 //            System.out.println("The current working directory is " + currentDirectory);
-            File datFile = new File("urinal.dat");
+            File datFile = new File(filename);
             System.out.println(datFile + "datfile");
             FileReader fr = new FileReader(datFile);
             return fr;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+        } catch (FileNotFoundException e) {
+            throw e;
         }
     }
 
 
-    static void processConsoleInput(Urinals urinal, StringBuilder output) {
+    static boolean processConsoleInput(Urinals urinal, StringBuilder output) {
         while (true) {
             String input = urinal.getStringFromKeyboard();
             if(input.equals("-1"))
@@ -110,10 +115,12 @@ public class Urinals {
             output.append(count);
             output.append("\n");
         }
+        return true;
     }
 
-    private static void processTextFile(Urinals urinal, StringBuilder output) throws IOException {
-        FileReader datFileReader = urinal.openFile();
+    private static boolean processTextFile(Urinals urinal, StringBuilder output) throws IOException {
+
+        FileReader datFileReader = urinal.openFile(DAT_FILE_NAME);
         if(datFileReader == null) {
             System.err.println("Error reading dat file");
             System.exit(1);
@@ -136,8 +143,9 @@ public class Urinals {
             }
         }
         datFileReader.close();
+        return true;
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Urinals urinal = new Urinals();
         System.out.println("Press 1 for file input, Press 0 for keyboard input");
         Scanner s = new Scanner(System.in);
