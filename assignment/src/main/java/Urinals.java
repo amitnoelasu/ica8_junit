@@ -7,8 +7,20 @@ import java.util.Scanner;
 public class Urinals {
 
     public static int RULE_NO = 0;
-    boolean goodString(String str) {
-        System.out.println("Not yet Implemented");
+    static boolean goodString(String str) {
+        char[] s = str.toCharArray();
+
+        int lastOne = -1;
+        for(int i = 0; i<s.length; i++) {
+            if(s[i] == '1') {
+                if(lastOne != -1 && lastOne == i-1) {
+                    return false;
+                } else {
+                    lastOne = i;
+                }
+            }
+        }
+
         return true;
     }
 

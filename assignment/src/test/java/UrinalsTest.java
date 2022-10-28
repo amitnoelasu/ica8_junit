@@ -10,10 +10,12 @@ class UrinalsTest {
 
     @org.junit.jupiter.api.Test
     void goodString() {
-        String[] tests = {"10001","0000","1001"};
-        for(String test: tests) {
-            assertTrue(urinals.goodString(test));
-        }
+        String[] tests = {"10001","0000","1001","011"};
+        assertTrue(urinals.goodString(tests[0]));
+        assertTrue(urinals.goodString(tests[1]));
+        assertTrue(urinals.goodString(tests[2]));
+        assertTrue(urinals.goodString(tests[3]));
+
     }
 
 
