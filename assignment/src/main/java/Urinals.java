@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.Scanner;
 
 /*
@@ -5,6 +6,7 @@ import java.util.Scanner;
  */
 public class Urinals {
 
+    public static int RULE_NO = 0;
     boolean goodString(String str) {
         System.out.println("Not yet Implemented");
         return true;
@@ -14,6 +16,20 @@ public class Urinals {
         Scanner s = new Scanner(System.in);
         String input = s.nextLine().trim();
         return input;
+    }
+
+    File createFile() {
+
+        String filePath = "rule"+RULE_NO+".txt";
+        if(RULE_NO == 0) {
+            filePath = "rule.txt";
+        }
+        File f = new File(filePath);
+        while(f.exists()) {
+            RULE_NO++;
+            return createFile();
+        }
+        return f;
     }
 
     public static void main(String[] args) {

@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.Scanner;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class UrinalsTest {
@@ -16,7 +18,8 @@ class UrinalsTest {
 
 
     @Test
-    void getStringFromKeyboard() {
-
+    void createFile() {
+        assertNotNull(urinals.createFile());
     }
+
 }
