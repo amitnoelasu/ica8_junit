@@ -1,3 +1,5 @@
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class UrinalsTest {
@@ -6,8 +8,15 @@ class UrinalsTest {
 
     @org.junit.jupiter.api.Test
     void goodString() {
-        String name = "Amit";
-        assertFalse(urinals.goodString(name));
-        System.out.println("===== "+name+" === TEST TWO EXECTUED");
+        String[] tests = {"10001","0000","1001"};
+        for(String test: tests) {
+            assertTrue(urinals.goodString(test));
+        }
+    }
+
+
+    @Test
+    void getStringFromKeyboard() {
+
     }
 }
