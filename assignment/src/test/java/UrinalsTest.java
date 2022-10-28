@@ -22,4 +22,11 @@ class UrinalsTest {
         assertNotNull(urinals.createFile());
     }
 
+    @Test
+    void countUrinals() {
+        String[] tests = {"10001","0000","1001"};
+        assertEquals(1, urinals.countUrinals(tests[0]));
+        assertEquals(2, urinals.countUrinals(tests[1]));
+        assertEquals(0, urinals.countUrinals(tests[2]));
+    }
 }

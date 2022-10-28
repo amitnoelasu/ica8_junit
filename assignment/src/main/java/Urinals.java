@@ -32,6 +32,27 @@ public class Urinals {
         return f;
     }
 
+    int countUrinals(String str) {
+        boolean isInputValid = goodString(str);
+        if(!isInputValid)
+            return -1;
+        int count = 0;
+        char[] s = str.toCharArray();
+        int lastOne = -1;
+        for(int i = 0; i<s.length; i++) {
+            if(s[i] == '0') {
+                boolean isLeftZero = (i==0) || (s[i-1] == '0');
+                boolean isRightZero = (i == s.length-1) || (s[i + 1] == '0');
+
+                if(isLeftZero && isRightZero) {
+                    count++;
+                    s[i] = '1';
+                }
+            }
+        }
+        return count;
+    }
+
     public static void main(String[] args) {
 
     }
