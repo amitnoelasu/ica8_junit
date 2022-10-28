@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.FileReader;
 import java.util.Scanner;
 
 /*
@@ -22,6 +23,16 @@ public class Urinals {
         }
 
         return true;
+    }
+
+    FileReader openFile() {
+        try {
+            File datFile = new File("urinal.dat");
+            FileReader fr = new FileReader(datFile);
+            return fr;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     String getStringFromKeyboard() {
