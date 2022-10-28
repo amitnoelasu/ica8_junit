@@ -88,8 +88,8 @@ public class Urinals {
 
     FileReader openFile() {
         try {
-            String currentDirectory = System.getProperty("user.dir");
-            System.out.println("The current working directory is " + currentDirectory);
+//            String currentDirectory = System.getProperty("user.dir");
+//            System.out.println("The current working directory is " + currentDirectory);
             File datFile = new File("urinal.dat");
             System.out.println(datFile + "datfile");
             FileReader fr = new FileReader(datFile);
